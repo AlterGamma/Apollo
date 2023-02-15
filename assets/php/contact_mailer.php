@@ -1,5 +1,7 @@
 <?php
 
+#commentaire
+
 // require './vendor/autoload.php';
 
 // use PHPMailer\PHPMailer\PHPMailer;
