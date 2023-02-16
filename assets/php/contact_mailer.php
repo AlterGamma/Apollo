@@ -1,38 +1,39 @@
 <?php
 
-#commentaire2
+require './vendor/autoload.php';
 
-// require './vendor/autoload.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-// use PHPMailer\PHPMailer\PHPMailer;
-// use PHPMailer\PHPMailer\Exception;
-
-// $mail = new PHPMailer(true);
-
-// try {
-//     //Server settings
-//     $mail->CharSet = 'UTF-8';
-//     $phpmailer->isSMTP();
-//     $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
-//     $phpmailer->SMTPAuth = true;
-//     $phpmailer->Port = 2525;
-//     $phpmailer->Username = '95802d02995791';
-//     $phpmailer->Password = '3b138e5ae361d5';
-//     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;    
-  
-//     //Recipients
-//     $mail->setFrom('from@example.com', 'Mailer');
-//     $mail->addAddress('202280148@cegepstfe.ca');
-//     $mail->addReplyTo('info@example.com', 'Information');
-
-//     //Content
-//     $mail->isHTML(true);                                  //Set email format to HTML
-//     $mail->Subject = 'Here is the subject';
-//     $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-//     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-//     $mail->send();
-//     echo 'Message has been sent';
-// } catch (Exception $e) {
-//     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-// }
+if(isset($_POST["submit"])){
+    $formMail = $_POST['email'];
+    $formSubject = $_POST['subject'];
+    $formMessage = $_POST['message'];
+    
+    $mail = new PHPMailer(true);
+    
+    try {
+        //Server settings
+        $mail->isSMTP();
+        $mail->Host = 'smtp.mailtrap.io';
+        $mail->SMTPAuth = true;
+        $mail->Port = 2525;
+        $mail->Username = '95802d02995791';
+        $mail->Password = '3b138e5ae361d5';
+        
+        //Recipients
+        $mail->setFrom($formMail, 'Sender Name');
+        $mail->addAddress('ludovic.tougas@gmail.com');
+        $mail->addReplyTo($formMail, 'Reply-to Name');
+    
+        //Content
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = $formSubject;
+        $mail->Body    = $formMessage;
+    
+        $mail->send();
+        echo 'Message has been sent';
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+}

@@ -1,10 +1,3 @@
-<?php
-
-require './assets/php/contact_mailer.php'
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -134,10 +127,10 @@ require './assets/php/contact_mailer.php'
         </p>
       </div>
       <form method="POST" enctype="multipart/form-data">
-        <input type="email" name="email" placeholder="Votre courriel">
-        <input type="text" name="subject" placeholder="Sujet">
-        <textarea placeholder="Message" name="message"></textarea>
-        <input type="submit" name="submit" action="" value="Envoyer" >
+        <input type="email" name="email" placeholder="Votre courriel" required>
+        <input type="text" name="subject" placeholder="Sujet" required>
+        <textarea placeholder="Message" name="message" required></textarea>
+        <input type="submit" name="submit" value="Envoyer" >
       </form>
     </div>
     <p class="copyright">&copy; Apollo Project</p>
