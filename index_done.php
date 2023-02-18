@@ -1,9 +1,3 @@
-<?php
-
-require 'assets/php/contact_mailer.php'
-
-?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -133,12 +127,12 @@ require 'assets/php/contact_mailer.php'
           Aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
         </p>
       </div>
-      <form method="POST" enctype="multipart/form-data">
-        <input type="email" name="email" placeholder="Votre courriel" required>
-        <input type="text" name="subject" placeholder="Sujet" required>
-        <textarea placeholder="Message" name="message" required></textarea>
-        <input type="submit" name="submit" value="Envoyer">
-      </form>
+      <div></div>
+      <div id="afterform" class="blurb">
+        <h3><strong>Message envoyé</strong></h3>
+        <p>Nous vous contacterons dès que possible. Merci de votre intérêt. 
+        </p>
+      </div>
     </div>
     <p class="copyright">&copy; Apollo Project</p>
   </section>

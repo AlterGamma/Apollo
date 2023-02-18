@@ -1,9 +1,11 @@
 <?php
 
-require './vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php';
+// action='index_done.php#afterform'
 
 if(isset($_POST["submit"])){
     $formMail = $_POST['email'];
@@ -13,6 +15,7 @@ if(isset($_POST["submit"])){
     $mail = new PHPMailer(true);
     
     try {
+        $mail->CharSet = 'UTF-8';
         //Server settings
         $mail->isSMTP();
         $mail->Host = 'smtp.mailtrap.io';
@@ -27,13 +30,18 @@ if(isset($_POST["submit"])){
         $mail->addReplyTo($formMail, 'Reply-to Name');
     
         //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->isHTML(true);
         $mail->Subject = $formSubject;
         $mail->Body    = $formMessage;
-    
+        $mail->AltBody = $formMessage;
         $mail->send();
         echo 'Message has been sent';
+
+        header('Location: index_done.php#afterform');
+
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 }
+
+?>
